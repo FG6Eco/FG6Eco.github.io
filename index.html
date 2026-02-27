@@ -9,7 +9,6 @@
     
     <style>
         body {
-            /* Pastel pink background */
             background-color: #fce4ec; 
             margin: 0;
             padding: 0;
@@ -18,8 +17,32 @@
             overflow-x: hidden;
         }
 
+        /* --- Glamorous Navigation Bar --- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.85); /* Glass effect */
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+            color: #8B0000;
+            font-size: 1.4rem;
+            margin: 0 30px;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.6; /* Soft fade when hovered */
+        }
+
         header {
-            /* Centers the title and subtitle */
             padding: 50px 20px 20px 20px;
             text-align: center;
         }
@@ -28,18 +51,17 @@
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             margin: 0;
-            color: #8B0000; /* Dark red */
-            text-decoration: underline; /* Underlined */
+            color: #8B0000; 
+            text-decoration: underline; 
         }
 
         .subtitle {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            color: #8B0000; /* Matching dark red */
+            color: #8B0000; 
             margin-top: 15px;
         }
 
-        /* --- The Scrolling Photo Gallery --- */
         .scroll-container {
             width: 100vw;
             overflow: hidden;
@@ -67,7 +89,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* --- Phrases Section --- */
         .phrases-section {
             padding: 50px 20px;
             text-align: center;
@@ -81,21 +102,26 @@
         }
 
         .phrase-card {
-            background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent white box */
-            border-left: 6px solid #8B0000; /* Dark red accent line on the left */
+            background-color: rgba(255, 255, 255, 0.6);
+            border-left: 6px solid #8B0000;
             padding: 20px 30px;
             margin: 20px auto;
-            max-width: 700px; /* Keeps the text from stretching too far */
+            max-width: 700px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             font-size: 1.3rem;
             font-style: italic;
             color: #444;
-            text-align: left; /* Keeps the actual text aligned to the left for easy reading */
+            text-align: left;
         }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="batata.html">Batata</a>
+    </nav>
 
     <header>
         <h1>My Personal Space</h1>
@@ -114,14 +140,7 @@
 
     <section class="phrases-section">
         <h2>Some Thoughts & Phrases</h2>
-        
-        <div class="phrase-card">
-            "Here is where you can type your first phrase, quote, or random thought that you want to share with the world."
-        </div>
-
-        <div class="phrase-card">
-            "You can add as many of these little boxes as you like. To add more, just copy and paste the 'div' code block!"
-        </div>
+        <div class="phrase-card">"Here is where you can type your first phrase..."</div>
     </section>
 
 </body>
