@@ -15,56 +15,83 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
-            overflow-x: hidden; /* Prevents the whole page from scrolling sideways */
+            overflow-x: hidden;
         }
 
         header {
-            /* Pushes the title to the upper-left corner */
-            padding: 30px 40px;
-            text-align: left;
+            /* Centers the title and subtitle */
+            padding: 50px 20px 20px 20px;
+            text-align: center;
         }
 
         h1 {
-            /* Beautiful typography and considerable size */
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             margin: 0;
-            color: #4a1c2f; /* A darker burgundy-pink for contrast */
+            color: #8B0000; /* Dark red */
+            text-decoration: underline; /* Underlined */
         }
 
-        main {
-            padding: 0 40px;
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #8B0000; /* Matching dark red */
+            margin-top: 15px;
         }
 
         /* --- The Scrolling Photo Gallery --- */
         .scroll-container {
             width: 100vw;
-            margin-left: -40px; /* Stretches the scroll across the whole screen */
             overflow: hidden;
-            background-color: rgba(255, 255, 255, 0.4); /* Soft white strip behind photos */
+            background-color: rgba(255, 255, 255, 0.4);
             padding: 30px 0;
-            margin-top: 40px;
+            margin-top: 30px;
             white-space: nowrap;
         }
 
         .scroll-track {
             display: inline-block;
-            /* Adjust the '20s' to make the scroll faster or slower */
             animation: scroll-left 20s linear infinite; 
         }
 
         .scroll-track img {
-            height: 300px; /* Size of your photos */
+            height: 300px;
             width: auto;
             margin-right: 25px;
-            border-radius: 15px; /* Soft rounded corners */
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Subtle shadow so they pop */
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
 
-        /* The animation moving from right to left */
         @keyframes scroll-left {
             0% { transform: translateX(100vw); }
             100% { transform: translateX(-100%); }
+        }
+
+        /* --- Phrases Section --- */
+        .phrases-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .phrases-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8B0000;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .phrase-card {
+            background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent white box */
+            border-left: 6px solid #8B0000; /* Dark red accent line on the left */
+            padding: 20px 30px;
+            margin: 20px auto;
+            max-width: 700px; /* Keeps the text from stretching too far */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #444;
+            text-align: left; /* Keeps the actual text aligned to the left for easy reading */
         }
     </style>
 </head>
@@ -72,23 +99,30 @@
 
     <header>
         <h1>My Personal Space</h1>
+        <p class="subtitle">Welcome to my corner of the internet. Here are some of my favorite moments!</p>
     </header>
-
-    <main>
-        <p style="font-size: 1.2rem; color: #5a3c48;">
-            Welcome to my corner of the internet. Here are some of my favorite moments!
-        </p>
-    </main>
 
     <div class="scroll-container">
         <div class="scroll-track">
-            <img src="https://via.placeholder.com/400x300/ffb6c1/ffffff?text=Your+Photo+1" alt="Photo 1">
-            <img src="https://via.placeholder.com/350x300/ffb6c1/ffffff?text=Your+Photo+2" alt="Photo 2">
+            <img src="eeee.gif" alt="eeee.gif">
+            <img src="dasd.jfif" alt="dasd.jfif">
             <img src="https://via.placeholder.com/450x300/ffb6c1/ffffff?text=Your+Photo+3" alt="Photo 3">
             <img src="https://via.placeholder.com/300x300/ffb6c1/ffffff?text=Your+Photo+4" alt="Photo 4">
             <img src="https://via.placeholder.com/400x300/ffb6c1/ffffff?text=Your+Photo+5" alt="Photo 5">
         </div>
     </div>
+
+    <section class="phrases-section">
+        <h2>Some Thoughts & Phrases</h2>
+        
+        <div class="phrase-card">
+            "Here is where you can type your first phrase, quote, or random thought that you want to share with the world."
+        </div>
+
+        <div class="phrase-card">
+            "You can add as many of these little boxes as you like. To add more, just copy and paste the 'div' code block!"
+        </div>
+    </section>
 
 </body>
 </html>
