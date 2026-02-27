@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batata - Comments</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     
     <style>
@@ -14,9 +13,11 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- Same Navigation Bar --- */
         nav {
             background-color: rgba(255, 255, 255, 0.85);
             padding: 20px 0;
@@ -38,7 +39,6 @@
 
         nav a:hover { opacity: 0.6; }
 
-        /* --- Glamorous Comment Section --- */
         .comment-section {
             max-width: 600px;
             margin: 60px auto;
@@ -47,6 +47,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
             text-align: center;
+            flex-grow: 1;
         }
 
         .comment-section h1 {
@@ -67,12 +68,6 @@
             font-family: 'Segoe UI', sans-serif;
             font-size: 1rem;
             background-color: #fff;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        input[type="text"]:focus, textarea:focus {
-            outline: none;
-            border-color: #8B0000;
         }
 
         button {
@@ -84,15 +79,11 @@
             font-size: 1.1rem;
             font-family: 'Playfair Display', serif;
             cursor: pointer;
-            transition: background-color 0.3s;
             width: 100%;
         }
 
-        button:hover {
-            background-color: #600000;
-        }
+        button:hover { background-color: #600000; }
 
-        /* Where the comments appear */
         #display-area {
             margin-top: 40px;
             text-align: left;
@@ -114,6 +105,21 @@
             display: block;
             margin-bottom: 5px;
         }
+
+        /* --- New Footer Styling --- */
+        footer {
+            text-align: right;
+            padding: 20px 40px;
+            margin-top: auto;
+            border-top: 1px solid rgba(139, 0, 0, 0.1);
+        }
+
+        footer p {
+            font-family: 'Playfair Display', serif;
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -125,16 +131,26 @@
 
     <div class="comment-section">
         <h1>Leave a Note</h1>
-        
         <input type="text" id="visitorName" placeholder="Your glamorous name...">
         <textarea id="visitorComment" rows="4" placeholder="Share your thoughts..."></textarea>
         <button onclick="postComment()">Drop Comment</button>
 
-        <div id="display-area">
-            </div>
+        <div id="display-area"></div>
     </div>
 
+    <footer>
+        <p><strong>Facundo Godoy</strong><br><em>"Your custom words go right here."</em></p>
+    </footer>
+
     <script>
+        // 1. When the page loads, check if there are saved comments
+        window.onload = function() {
+            var savedComments = localStorage.getItem("myGlamorousComments");
+            if (savedComments) {
+                document.getElementById("display-area").innerHTML = savedComments;
+            }
+        };
+
         function postComment() {
             var name = document.getElementById("visitorName").value;
             var comment = document.getElementById("visitorComment").value;
@@ -145,16 +161,17 @@
             }
 
             var displayArea = document.getElementById("display-area");
-            
-            // Create the glamorous comment box
             var newBox = document.createElement("div");
             newBox.className = "posted-comment";
             newBox.innerHTML = "<strong>" + name + "</strong>" + comment;
             
-            // Add it to the page
+            // Add new comment to the top
             displayArea.prepend(newBox);
             
-            // Clear the form for the next person
+            // 2. Save the entire updated HTML into LocalStorage
+            localStorage.setItem("myGlamorousComments", displayArea.innerHTML);
+            
+            // Clear inputs
             document.getElementById("visitorName").value = "";
             document.getElementById("visitorComment").value = "";
         }
