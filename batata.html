@@ -106,7 +106,6 @@
             margin-bottom: 5px;
         }
 
-        /* --- New Footer Styling --- */
         footer {
             text-align: right;
             padding: 20px 40px;
@@ -125,7 +124,7 @@
 <body>
 
     <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html">Nosotros</a>
         <a href="batata.html">Batata</a>
     </nav>
 
@@ -143,35 +142,52 @@
     </footer>
 
     <script>
-        // 1. When the page loads, check if there are saved comments
+        // 1. Create an array to hold the comments
+        let myComments = [];
+
+        // 2. When the page loads, pull the saved list from the browser
         window.onload = function() {
-            var savedComments = localStorage.getItem("myGlamorousComments");
-            if (savedComments) {
-                document.getElementById("display-area").innerHTML = savedComments;
+            const savedData = localStorage.getItem("batataCommentsData");
+            if (savedData) {
+                myComments = JSON.parse(savedData); // Convert back to a list
+                renderAllComments(); // Draw them on the screen
             }
         };
 
+        // 3. Function to draw all comments to the screen
+        function renderAllComments() {
+            const displayArea = document.getElementById("display-area");
+            displayArea.innerHTML = ""; // Clear the area first
+
+            // Loop through the list and build a box for each one
+            for (let i = 0; i < myComments.length; i++) {
+                let newBox = document.createElement("div");
+                newBox.className = "posted-comment";
+                newBox.innerHTML = "<strong>" + myComments[i].name + "</strong>" + myComments[i].text;
+                displayArea.appendChild(newBox);
+            }
+        }
+
+        // 4. Function that runs when you click the button
         function postComment() {
-            var name = document.getElementById("visitorName").value;
-            var comment = document.getElementById("visitorComment").value;
+            const nameInput = document.getElementById("visitorName").value;
+            const commentInput = document.getElementById("visitorComment").value;
             
-            if (name === "" || comment === "") {
+            if (nameInput === "" || commentInput === "") {
                 alert("Please fill in both your name and comment!");
                 return;
             }
 
-            var displayArea = document.getElementById("display-area");
-            var newBox = document.createElement("div");
-            newBox.className = "posted-comment";
-            newBox.innerHTML = "<strong>" + name + "</strong>" + comment;
+            // Add the new comment to the START of our list
+            myComments.unshift({ name: nameInput, text: commentInput });
             
-            // Add new comment to the top
-            displayArea.prepend(newBox);
+            // Save the newly updated list to the browser
+            localStorage.setItem("batataCommentsData", JSON.stringify(myComments));
             
-            // 2. Save the entire updated HTML into LocalStorage
-            localStorage.setItem("myGlamorousComments", displayArea.innerHTML);
+            // Redraw the screen to show the new comment
+            renderAllComments();
             
-            // Clear inputs
+            // Clear the input boxes
             document.getElementById("visitorName").value = "";
             document.getElementById("visitorComment").value = "";
         }
